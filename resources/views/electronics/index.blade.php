@@ -42,7 +42,7 @@
                 {{ $electronics->links() }}
                 </div>
                 @else
-                <h3 style="margin: 10px;">لا يوجد منتجات لعرضها</h3>
+                <h2 style="margin: 10px; font-weight: bold; text-align: center; color:blue;">لا يوجد منتجات لعرضها</h2>
                 @endif
     </div>
   </div>
