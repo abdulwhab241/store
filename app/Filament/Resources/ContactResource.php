@@ -38,18 +38,24 @@ class ContactResource extends Resource
                 //
             ])
             ->actions([
-
+                // Tables\Actions\ViewAction::make()
+                // ->mutateRecordDataUsing(function (array $data): array {
+                //     $data['user_id'] = auth()->id();
+            
+                //     return $data;
+                // })
                 ])
             ->bulkActions([
 
             ]);
     }
-    
-    
+
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListContacts::route('/'),
+            // 'view' => Pages\ViewContact::route('/{record}'),
         ];
     }    
 }

@@ -61,7 +61,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <h6 scope="col" style="text-align: center;">{{number_format($total)}} YER </h6>
+                                    <h6 scope="col" style="text-align: center;"> ريال {{number_format($total)}}  </h6>
                                 </td>
                             </tr>
                         </tbody>
