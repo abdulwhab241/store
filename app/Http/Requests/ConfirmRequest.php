@@ -24,7 +24,7 @@ class ConfirmRequest extends FormRequest
     public function rules()
     {
         return [
-            'lsat_name' => ['required'],
+            'last_name' => ['required'],
             'address' => ['required'],
             'city' => ['required'],
             'area' => ['required'],

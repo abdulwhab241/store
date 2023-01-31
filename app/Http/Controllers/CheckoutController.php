@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
+
 use App\Models\Order;
+use App\Models\OrderedItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ConfirmRequest;
@@ -22,43 +23,33 @@ class CheckoutController extends Controller
             }
     }
 
-    public function confirm(ConfirmRequest $request)
+    public function done(ConfirmRequest $request)
     {
-        // $order = Order::create([
-        //     "user_id" => auth()->id(),
-        //     "first_name" => $request->input("first_name"),
-        //     "last_name" => $request->input("last_name"),
-        //     "company_name" => $request->input("company_name"),
-        //     "address" => $request->input("address"),
-        //     "address_number" => $request->input("address_number"),
-        //     "city" => $request->input("city"),
-        //     "area" => $request->input("area"),
-        //     "phone" => $request->input("phone"),
-        //     "payment_method" => $request->input("payment_method"),
-        //     "order_notice" => $request->input("order_notice")
-        // ]);
-        // $order->save();
         $order = new Order();
         $order->user_id = auth()->id();
-        $order->first_name= $request->input("first_name");
-        $order->last_name= $request->input("last_name");
-        $order->company_name= $request->input("company_name");
-        $order->address= $request->input("address");
-        $order->address_number= $request->input("address_number");
-        $order->city= $request->input("city");
-        $order->area= $request->input("area");
-        $order->phone= $request->input("phone");
-        $order->payment_method= $request->input("payment_method");
-        $order->order_notice= $request->input("order_notice");
+        $order->first_name = strip_tags($request->input("first_name"));
+        $order->last_name = strip_tags($request->input("last_name"));
+        $order->company_name = strip_tags($request->input("company_name"));
+        $order->address = strip_tags($request->input("address"));
+        $order->address_number = strip_tags($request->input("address_number"));
+        $order->city = strip_tags($request->input("city"));
+        $order->area = strip_tags($request->input("area"));
+        $order->phone = strip_tags($request->input("phone"));
+        $order->payment_method = strip_tags($request->input("payment_method"));
+        $order->order_notice = strip_tags($request->input("order_notice"));
         $order->save();
 
-        // $cartItems = Cart::with(["product"])->where("user_id", auth()->id())->get();
-        // foreach ($cartItems as $item) {
-        //     Order::create([
-        //         'cart_id' => $item->cart_id,
-        //     ]);
-        // }
+        foreach(get_cart() as $cart){
+            OrderedItem::create([
+                "order_id"=>$order->id,
+                "product_id"=>data_get($cart,"product_id"),
+                "price"=>data_get($cart,"product.price"),
+                "quantity"=>data_get($cart,"quantity"),
+            ]);
+        }
 
-        return redirect()->back()->with(['message' => 'The request has been sent successfully']);
+        clear_cart();
+        
+        return redirect()->back()->with('message' , 'The request has been sent successfully');
     }
 }

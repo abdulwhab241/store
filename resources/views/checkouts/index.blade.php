@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-8" style="background-color: #F1F6F7;">
                     <h3 style="margin-top: 20px;">تفاصيل الفاتورة</h3>
-                    <form class="row contact_form" action="{{route('confirm')}}" method="POST" novalidate="novalidate">
+                    <form class="row contact_form" action="{{route('done')}}" method="POST">
                         @csrf
                         <div class="col-md-6 form-group p_star">
                             <label style=" color:black; font-weight: bold; padding:5px; margin:5px;">الاسم الأول:</label>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="col-md-6 form-group p_star">
                             <label style=" color:black; font-weight: bold; padding:5px; margin:5px;"> المدينة:</label>
-                            <input type="text" class="form-control" value="{{ old('city') }}" id="email" name="city">
+                            <input type="text" class="form-control" value="{{ old('city') }}" id="city" name="city">
                             <div style="margin-top: 20px;">
                                 @error('city')
                                 <span class="alert alert-danger">
@@ -62,7 +62,7 @@
                         </div>
                         <div class="col-md-6 form-group p_star">
                             <label style=" color:black; font-weight: bold; padding:5px; margin:5px;"> المنطقة:</label>
-                            <input type="text" class="form-control" id="email" value="{{ old('area') }}" name="area">
+                            <input type="text" class="form-control" id="area" value="{{ old('area') }}" name="area">
                             <div style="margin-top: 20px;">
                                 @error('area')
                                 <span class="alert alert-danger">
@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-md-12 form-group">
                             <label style=" color:black; font-weight: bold; padding:5px; margin:5px;"> رقم الهاتف:</label>
-                            <input type="text" class="form-control" id="email" value="{{ old('phone') }}" name="phone">
+                            <input type="text" class="form-control" id="phone" value="{{ old('phone') }}" name="phone">
                             <div style="margin-top: 20px;">
                                 @error('phone')
                                 <span class="alert alert-danger">
@@ -84,9 +84,11 @@
                         </div>
                         <div class="col-md-12 form-group">
                             <label style=" color:black; font-weight: bold; padding:5px; margin:5px;"> ملاحظات الطلب (اختياري)</label>
-                            <textarea class="form-control different-control w-100" name="order_notice" id="content" cols="20" rows="5" >{{ old('order_notice') }}</textarea>
+                            <textarea class="form-control different-control w-100" name="order_notice" id="order_notice" cols="20" rows="5" >{{ old('order_notice') }}</textarea>
                         </div>
                 </div>
+           
+            
                 <div class="col-lg-4">
                     <div class="order_box">
                         <table class="table list">
@@ -123,7 +125,7 @@
                         </ul>
                         <div class="payment_item">
                             <div class="radion_btn">
-                                <input type="radio" id="f-option5" name="payment_method" value="حوالة مصرفية مباشرة">
+                                <input type="radio" id="f-option5" name="payment_method" value="حوالة مصرفية مباشرة"  {{ old('payment_method') == 'حوالة مصرفية مباشرة' ? 'checked' : ''}}>
                                 <label for="f-option5">حوالة مصرفية مباشرة</label>
                                 <div style="margin-top: 20px;">
                                     @error('payment_method')
@@ -142,15 +144,15 @@
                         </div>
                         <div class="payment_item active">
                             <div class="radion_btn">
-                                <input type="radio" id="f-option6" name="payment_method" value="الدفع نقدًا عند الاستلام">
-                                <label for="f-option6"> الدفع نقدًا عند الاستلام </label>
-                                <div style="margin-top: 20px;">
+                                <input type="radio" id="f-option6" name="payment_method" value="الدفع نقداً عند الاستلام" {{ old('payment_method') == 'الدفع نقداً عند الاستلام' ? 'checked' : ''}}>
+                                <label for="f-option6"> الدفع نقداً عند الاستلام </label>
+                                {{-- <div style="margin-top: 20px;">
                                     @error('payment_method')
                                     <span class="alert alert-danger">
                                     لابد من اختيار طريقة الدفع
                                     </span>
                                     @enderror
-                                    </div>
+                                    </div> --}}
                                 <div class="check"></div>
                             </div>
                             <p style="font-weight: bold; color:black;">

@@ -40,7 +40,10 @@ Route::resource('cart', CartController::class);
 Route::resource('medicals', MedicalController::class);
 Route::resource('moderns', ModernController::class);
 Route::resource('contact', ContactController::class);
-Route::resource('checkouts', CheckoutController::class);
+// Route::resource('checkouts', CheckoutController::class);
+
+Route::get('checkouts', [CheckoutController::class,"index"])->name("checkout");
+Route::post('checkouts', [CheckoutController::class, 'done']) -> name('done');
 
 // Add product to Cart 
 Route::post('cart{id}', [CartController::class, 'add']) -> name('add');
@@ -48,7 +51,7 @@ Route::post('cart{id}', [CartController::class, 'add']) -> name('add');
 // Delete Product From Cart 
 Route::get('cart{id}/user{user_id}', [CartController::class, 'remove']) -> name('remove');
 
-Route::post('/checkouts', [CheckoutController::class, 'confirm']) -> name('confirm');
+// Route::post('/confirm', [CartController::class, 'done']) -> name('done');
 
 // Route::get('/contact', [ContactController::class, 'show']) -> name('contact.show');
 Route::post('/contact', [ContactController::class, 'submit']) -> name('submit');

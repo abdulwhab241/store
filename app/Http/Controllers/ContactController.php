@@ -23,6 +23,6 @@ class ContactController extends Controller
         $contact -> message = strip_tags($request->input('content') );
 
         $contact -> save();
-        return redirect()-> back()->with(['message' => 'تم الارسال بنجاح']);
+        return redirect()-> back()->with('message', 'تم الارسال بنجاح');
     }
 }

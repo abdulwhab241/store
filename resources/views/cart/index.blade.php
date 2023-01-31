@@ -67,7 +67,7 @@
                         </tbody>
                     </table>
                     <form action="#">
-                        <p style="text-align: center;"><a class="btn btn-outline-info btn-lg" href="{{ route('checkouts.index') }}">التقديم لإتمام الطلب </a></p>
+                        <p style="text-align: center;"><a class="btn btn-outline-info btn-lg" href="{{ route('checkout') }}">التقديم لإتمام الطلب </a></p>
                     </form>
                     @else
                     <h3 style="margin: 10px; font-weight: bold; text-align: center; color:blue;">سلة المشتريات فارغة حالياً</h3>

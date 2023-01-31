@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ConfirmRequest;
 
 class CartController extends Controller
 {
@@ -41,4 +43,23 @@ class CartController extends Controller
                 return redirect()->back()->with('error', 'المنتج غير موجود');
             }
     }
+
+    // public function done(ConfirmRequest $request)
+    // {
+    //     dd("ddd");
+    //     $order = new Order();
+    //     $order->user_id = auth()->id();
+    //     $order->first_name = strip_tags($request->input("first_name"));
+    //     $order->last_name = strip_tags($request->input("last_name"));
+    //     $order->company_name = strip_tags($request->input("company_name"));
+    //     $order->address = strip_tags($request->input("address"));
+    //     $order->address_number = strip_tags($request->input("address_number"));
+    //     $order->city = strip_tags($request->input("city"));
+    //     $order->area = strip_tags($request->input("area"));
+    //     $order->phone = strip_tags($request->input("phone"));
+    //     $order->payment_method = strip_tags($request->input("payment_method"));
+    //     $order->order_notice = strip_tags($request->input("order_notice"));
+    //     $order->save();
+    //     return redirect()->back()->with('message' , 'The request has been sent successfully');
+    // }
 }
