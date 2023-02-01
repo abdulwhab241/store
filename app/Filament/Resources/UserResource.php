@@ -10,7 +10,9 @@ use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
+use Filament\Tables\Columns\BooleanColumn;
 use Illuminate\Support\Facades\Hash;
+use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,6 +28,7 @@ class UserResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-user';
     protected static ?string $navigationGroup = 'إدارة المستخدمين';
     protected static ?string $navigationLabel = 'المستخدمين';
+    protected static ?string $pluralModelLabel  = 'المستخدمين';
 
     public static function form(Form $form): Form
     {
@@ -38,12 +41,12 @@ class UserResource extends Resource
                 ->unique()
                 ->required()
                 ->maxLength(255),
-                TextInput::make('role')
+                Toggle::make('role')
                 ->label('Role:')
-                ->integer()
-                ->required()
-                ->minLength(1)
-                ->maxLength(1),
+                // ->integer()
+                ->required(),
+                // ->minLength(0)
+                // ->maxLength(1),
                 TextInput::make('email')
                 ->label('Email Address')
                 ->unique()
@@ -75,6 +78,7 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable(),
+                BooleanColumn::make('role')->label('Role')->sortable()->searchable(),
                 TextColumn::make('name')->label('الأسم')->sortable()->searchable(),
                 TextColumn::make('created_at')->label('تاريخ الإنشاء')->dateTime()
             ])

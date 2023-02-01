@@ -21,6 +21,7 @@ class ContactResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-at-symbol';
     protected static ?string $navigationGroup = 'إدارة الإيميلات';
     protected static ?string $navigationLabel = 'الإيميلات';
+    protected static ?string $pluralModelLabel  = 'الإيميلات';
 
     public static function table(Table $table): Table
     {
@@ -38,12 +39,7 @@ class ContactResource extends Resource
                 //
             ])
             ->actions([
-                // Tables\Actions\ViewAction::make()
-                // ->mutateRecordDataUsing(function (array $data): array {
-                //     $data['user_id'] = auth()->id();
             
-                //     return $data;
-                // })
                 ])
             ->bulkActions([
 
@@ -55,7 +51,6 @@ class ContactResource extends Resource
     {
         return [
             'index' => Pages\ListContacts::route('/'),
-            // 'view' => Pages\ViewContact::route('/{record}'),
         ];
     }    
 }

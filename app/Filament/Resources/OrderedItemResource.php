@@ -22,6 +22,7 @@ class OrderedItemResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-list';
     protected static ?string $navigationGroup = 'إدارة الطلبات';
     protected static ?string $navigationLabel = 'تصنيفات الطلبات';
+    protected static ?string $pluralModelLabel  = 'تصنيفات الطلبات';
 
     public static function table(Table $table): Table
     {

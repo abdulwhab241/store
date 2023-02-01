@@ -24,6 +24,8 @@ class CategoryResource extends Resource
     protected static ?string $activeNavigationIcon = 'heroicon-s-document-text';
     protected static ?string $navigationGroup = 'إدارة الاقسام';
     protected static ?string $navigationLabel = 'الاقسام';
+    protected static ?string $pluralModelLabel  = 'الاقسام';
+    
 
     // public static function form(Form $form): Form
     // {

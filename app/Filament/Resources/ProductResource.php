@@ -30,6 +30,7 @@ class ProductResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-check';
     protected static ?string $navigationGroup = 'إدارة المنتجات';
     protected static ?string $navigationLabel = 'المنتجات';
+    protected static ?string $pluralModelLabel  = 'المنتجات';
 
     public static function form(Form $form): Form
     {
@@ -56,6 +57,7 @@ class ProductResource extends Resource
             Select::make('category_id')
             ->label('إختر القسم:')
             ->relationship('category', 'name')->required()
+            ->preload()
 
         ])
             
