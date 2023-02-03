@@ -2,6 +2,11 @@
 @section('title', ' إنشاء حساب')
 @section('Page')
 <section class="login_box_area section-margin">
+	@if (Session::has('message'))
+    <div class="alert alert-info">
+        <span style="text-align: center; font-weight: bold;"><h4 style="text-align: center font-weight: bold;">{{Session::get('message')}}</h4>  </span>
+    </div>
+    @endif
 <div class="container" style="margin-bottom: 20px;">
 <div class="row">
 	<div class="col-lg-6">
@@ -18,11 +23,6 @@
 <div class="col-lg-6 md-6" style="background-color: #F1F6F7;">
 <div class="login_form_inner register_form_inner">
 <h3 style="color: cornflowerblue; font-weight: bold;">إنشاء حساب</h3>
-@if (Session::has('message'))
-<div class="alert alert-info">
-	<span style="text-align: center; font-weight: bold;"> {{Session::get('message')}} </span>
-</div>
-@endif
 <form class="row login_form" action="{{ route('create') }}" method="POST" id="register_form" >
 	@csrf
 <div class="col-md-12 form-group">

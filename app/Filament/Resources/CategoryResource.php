@@ -25,22 +25,24 @@ class CategoryResource extends Resource
     protected static ?string $navigationGroup = 'إدارة الاقسام';
     protected static ?string $navigationLabel = 'الاقسام';
     protected static ?string $pluralModelLabel  = 'الاقسام';
+    protected static ?string $modelLabel = 'قسم';
+    protected static ?int $navigationSort = 1;
     
 
-    // public static function form(Form $form): Form
-    // {
-    //     return $form
-    //     ->schema([
-    //         Card::make()
-    //         ->schema([
-    //             TextInput::make('name')
-    //             ->label('الأسم:')
-    //             ->required()
-    //             ->maxLength(255)
-    //     ])
+    public static function form(Form $form): Form
+    {
+        return $form
+        ->schema([
+            Card::make()
+            ->schema([
+                TextInput::make('name')
+                ->label('الأسم:')
+                ->required()
+                ->maxLength(255)
+        ])
             
-    //         ]);
-    // }
+            ]);
+    }
 
     public static function table(Table $table): Table
     {
@@ -72,6 +74,7 @@ class CategoryResource extends Resource
     {
         return [
             'index' => Pages\ListCategories::route('/'),
+            'create' => Pages\CreateCategories::route('/create'),
         ];
     }    
 }

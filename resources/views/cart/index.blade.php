@@ -2,17 +2,15 @@
 @section('title', 'السلة')
 @section('Page')
 <section class="cart_area">
-
+    @if (Session::has('error'))
+    <div class="alert alert-danger">
+    <span style="text-align: center; font-weight: bold;"><h4 style="text-align: center font-weight: bold; color:red;">{{Session::get('error')}}</h4>  </span>
+    </div>
+    @endif
     <div class="container">
         <div class="row">
         <div class="col">
-            @if (Session::has('error'))
-            <div class="alert alert-danger">
-            <span style="text-align: center; font-weight: bold;"><h4 style="text-align: center font-weight: bold; color:red;">{{Session::get('error')}}</h4>  </span>
-            </div>
-            @endif
             @if(count(get_cart()) > 0)
-    
             <table class="table">
                 <thead>
                     <th scope="col" style="width: 50%;">المنتج</th>

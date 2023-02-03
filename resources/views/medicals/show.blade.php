@@ -2,17 +2,17 @@
 @section('title', 'المنتج')
 @section('Page')
 <section style="margin-top: 10px; margin-bottom:10px;">
+  @if (Session::has('message'))
+  <div class="alert alert-info">
+    <span style="text-align: center; font-weight: bold;"><h4 style="text-align: center font-weight: bold;">{{Session::get('message')}}</h4>  </span>
+  </div>
+  @endif
   <div class="container" >
   <div class="row">
     <div class="col">
     <div class="card mb-3 border-0" style="width: 100%; margin: 5px;  padding:5px; background: #F1F6F7;">
   <div class="row g-0">
     <div class="col-md-4">
-      @if (Session::has('message'))
-      <div class="alert alert-info">
-        <span style="text-align: center; font-weight: bold;"> {{Session::get('message')}} </span>
-      </div>
-      @endif
       @if(count(data_get($medical,'image')??[]))
       @foreach(data_get($medical,'image') as $image)
       <img src="{{ '/uploads/' . $image }}" class="img-fluid rounded-start" style="padding: 5px; width: 150px; height: 100px;">

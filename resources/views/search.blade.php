@@ -7,7 +7,7 @@
     <div class="container">
     <div class="row">
     <div class="col">
-                    {{-- @if(count($posts) > 0) --}}
+                    @if(count($posts) > 0)
                     <ul>
                     
                     @foreach($posts as $house)
@@ -25,9 +25,10 @@
                     @endforeach
                     </ul>
                     {{-- {{ $posts->links() }} --}}
-                    {{-- @else
-                    <p>There are no House to display.</p>
-                    @endif --}}
+                    @else
+                    <h3 style="margin-top: 30px; margin-bottom:20px; text-align:center;">عذراً المنتج غير موجود</h3>
+                    <p style="text-align: center; margin-top: 25px;"><a class="btn btn-outline-info btn-lg" href="{{ route('home.index') }}" style="width: 15%;">العوده الى المتجر</a></p>
+                    @endif
     </div>
     </div>
     </div>

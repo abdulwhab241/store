@@ -22,6 +22,7 @@ class ContactResource extends Resource
     protected static ?string $navigationGroup = 'إدارة الإيميلات';
     protected static ?string $navigationLabel = 'الإيميلات';
     protected static ?string $pluralModelLabel  = 'الإيميلات';
+    protected static ?int $navigationSort = 3;
 
     public static function table(Table $table): Table
     {

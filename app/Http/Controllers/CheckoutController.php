@@ -50,6 +50,6 @@ class CheckoutController extends Controller
 
         clear_cart();
         
-        return redirect()->back()->with('message' , 'The request has been sent successfully');
+        return redirect()->back()->with('message' , 'شكراً لك تم إستلام طلبك. ');
     }
 }

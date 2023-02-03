@@ -23,6 +23,7 @@ class OrderResource extends Resource
     protected static ?string $navigationGroup = 'إدارة الطلبات';
     protected static ?string $navigationLabel = 'الطلبات';
     protected static ?string $pluralModelLabel  = 'الطلبات';
+    protected static ?int $navigationSort = 4;
 
     public static function table(Table $table): Table
     {
@@ -45,6 +46,7 @@ class OrderResource extends Resource
                 
                 ])
             ->bulkActions([
+                    Tables\Actions\DeleteBulkAction::make(),
 
             ]);
     }

@@ -167,7 +167,7 @@
                 </div>
             </form>
                 @else
-                <h3 style="margin: 10px; font-weight: bold; text-align: center; color:blue;">سلة المشتريات فارغة حالياً يرجى إضافة منتجات لإتمام الطلب!</h3>
+                <p style="margin: 10px; font-weight: bold; text-align: center; color:blue;">سلة المشتريات فارغة حالياً يرجى إضافة منتجات لإتمام الطلب!</p>
                 <p style="text-align: center; margin-top: 25px;"><a class="btn btn-outline-info btn-lg" href="{{ route('home.index') }}" style="width: 15%;">العوده الى المتجر</a></p>
                 @endif
             </div>

@@ -10,13 +10,13 @@ use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
-use Filament\Tables\Columns\BooleanColumn;
 use Illuminate\Support\Facades\Hash;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Pages\CreateRecord;
+use Filament\Tables\Columns\BooleanColumn;
 use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\RelationManagers;
@@ -29,6 +29,8 @@ class UserResource extends Resource
     protected static ?string $navigationGroup = 'إدارة المستخدمين';
     protected static ?string $navigationLabel = 'المستخدمين';
     protected static ?string $pluralModelLabel  = 'المستخدمين';
+    protected static ?string $modelLabel = 'مستخدم';
+    protected static ?int $navigationSort = 0;
 
     public static function form(Form $form): Form
     {
@@ -58,6 +60,7 @@ class UserResource extends Resource
                 ->required(fn (Page $livewire): bool => $livewire instanceof CreateRecord)
                 ->minLength(5)
                 ->maxLength(20)
+                ->required()
                 ->same('passwordConfirmation')
                 ->dehydrated(fn ($state) => filled($state))
                 ->dehydrateStateUsing(fn ($state) => Hash::make($state)),
@@ -68,6 +71,7 @@ class UserResource extends Resource
                 ->minLength(5)
                 ->maxLength(20)
                 ->dehydrated(false)
+                ->required()
         ])
             
             ]);
@@ -76,27 +80,36 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('id')->sortable(),
-                BooleanColumn::make('role')->label('Role')->sortable()->searchable(),
-                TextColumn::make('name')->label('الأسم')->sortable()->searchable(),
-                TextColumn::make('created_at')->label('تاريخ الإنشاء')->dateTime()
+        ->columns([
+            TextColumn::make('id')->sortable(),
+            BooleanColumn::make('role')->label('Role')->sortable()->searchable(),
+            TextColumn::make('name')->label('الأسم')->sortable()->searchable(),
+            TextColumn::make('created_at')->label('تاريخ الإنشاء')->dateTime()
             ])
             ->filters([
                 //
             ])
             ->actions([
-
-                ])
+                Tables\Actions\EditAction::make(),
+            ])
             ->bulkActions([
-
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
+    }
+    
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
     }
     
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListUsers::route('/'),
+            'create' => Pages\CreateUser::route('/create'),
+            'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
-    }   
+    }    
 }

@@ -10,10 +10,10 @@ class ListOrderedItems extends ListRecords
 {
     protected static string $resource = OrderedItemResource::class;
 
-    protected function getActions(): array
-    {
-        return [
-            Actions\CreateAction::make(),
-        ];
-    }
+    // protected function getActions(): array
+    // {
+    //     return [
+    //         Actions\CreateAction::make(),
+    //     ];
+    // }
 }

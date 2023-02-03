@@ -16,7 +16,7 @@ class ModernController extends Controller
     public function show($modern)
     {
         return view('moderns.show', [
-            'moderns' =>Product::findOrFail($modern)
+            'modern' =>Product::findOrFail($modern)
         ]);
     }
 }
