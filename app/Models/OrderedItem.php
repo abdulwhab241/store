@@ -11,21 +11,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class OrderedItem extends Model
 {
     use HasFactory;
-
     public $fillable = [
-            "order_id",
-            "product_id",
-            "price",
-            "quantity",
-        ];
-        public function product(){
-            return $this->belongsTo(Product::class);
-        }
+        "order_id",
+        "product_id",
+        "price",
+        "quantity",
+    ];
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 
-        public function order(){
-            return $this->belongsTo(Order::class);
-        }
-        public function user(){
-            return $this->belongsTo(User::class);
-        }
+    public function order(){
+        return $this->belongsTo(Order::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
